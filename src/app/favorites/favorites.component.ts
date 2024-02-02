@@ -9,9 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './favorites.component.css',
 })
 export class FavoritesComponent {
-  movies = this.dataService.movies$.getValue();
+  favorites$ = this.dataService.movies$;
   onClick() {
-    console.log(this.movies);
   }
   constructor(
     private dataService: DataService,

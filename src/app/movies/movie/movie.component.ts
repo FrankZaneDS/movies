@@ -7,7 +7,7 @@ import {
   NavigationEnd,
   ActivationStart,
 } from '@angular/router';
-import { BehaviorSubject } from 'rxjs-compat';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-movie',
@@ -17,48 +17,23 @@ import { BehaviorSubject } from 'rxjs-compat';
 export class MovieComponent implements OnInit {
   getMovie = this.dataService.getFavorites;
   movies$ = this.dataService.movies$;
-  data = this.dataService.data$.getValue();
-  disabled = this.deleteButton();
-  movieList$ = new BehaviorSubject<Movie[]>([]);
-  listOfMovies = this.movieList$.getValue();
   @Input() i: number;
+  @Input() data: Movie;
+  @Input() isDisabled: boolean;
+  @Input() url: 'favorites' | 'movies';
   // subscription: Subscription;
   onClick() {
     console.log(this.movies$);
   }
 
-  deleteButton() {
-    const path = +this.activatedRoute.snapshot.params['id'];
-    if (!path) {
-      console.log('true');
-      return true;
-    } else console.log('false');
-    return false;
-  }
-  ngOnInit() {}
-  getMovieList() {
-    const path = +this.activatedRoute.snapshot.params['id'];
-    if (!path) {
-      console.log('cll');
-      return this.data;
-    } else console.log('radi');
-    return this.movies$;
+  ngOnInit() {
   }
 
   constructor(
     private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
-    // this.subscription = this.dataService.data$.subscribe((data) => {
-    //    this.data = data;
-    //  });
-    this.router.events.subscribe((ev) => {
-      if (ev instanceof NavigationEnd) {
-        this.getMovieList();
-      }
-    });
-  }
+  ) {}
 
   // ngOnDestroy() {
   //   // this.subscription.unsubscribe();

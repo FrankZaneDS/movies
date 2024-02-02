@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
-import { BehaviorSubject } from 'rxjs-compat';
+import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,13 +15,12 @@ export class DataService {
 
   getFavorites(movie: Movie) {
     this.movies$.next([...this.movies$.getValue(), movie]);
-    console.log(this.movies$);
   }
 
   constructor(private http: HttpClient) {}
-  getData() {
+  getData(): Observable<Movie[]> {
     let url = 'https://jsonplaceholder.typicode.com/todos/';
-    return this.http.get(url);
+    return this.http.get<Movie[]>(url);
   }
 }
 

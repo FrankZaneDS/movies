@@ -6,13 +6,13 @@
     alt="Card image cap"
   />
   <div class="card-body">
-    <h5 class="card-title">Movie number {{ data[i].id }}</h5>
+    <h5 (click)="onClick()" class="card-title">Movie number {{ data.id }}</h5>
     <p class="card-text" style="height: 40%">
-      {{ data[i].title }}
+      {{ data.title }}
     </p>
-    <button (click)="getMovie(data[i])" class="btn btn-primary">
+    <button (click)="getMovie(data)" class="btn btn-primary">
       Add to favorites
     </button>
-    <button class="btn btn-danger" [disabled]="deleteButton()">Delete</button>
+    <button class="btn btn-danger" *ngIf="!isDisabled">Delete</button>
   </div>
 </div>

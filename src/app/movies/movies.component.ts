@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DataService } from '../data.service';
-import { Subject } from 'rxjs';
+import { DataService, Movie } from '../data.service';
+import { Observable, Subject, take } from 'rxjs';
 import { OnInit } from '@angular/core';
 
 @Component({
@@ -9,23 +9,16 @@ import { OnInit } from '@angular/core';
   styleUrl: './movies.component.css',
 })
 export class MoviesComponent implements OnInit {
-  data: any;
+  movies$: Observable<Movie[]>;
+  isDisabled: true;
 
-  sendData() {
-    this.dataService.setData(this.data);
-  }
+  // sendData() {
+  //   this.dataService.setData(this.data);
+  // }
   ngOnInit() {
-    this.dataService.getData().subscribe((data) => {
-      console.warn(data);
-      this.data = data;
-    });
-    this.sendData();
+    this.movies$ = this.dataService.getData().pipe(take(1));
+    // this.sendData();
   }
 
-  constructor(private dataService: DataService) {
-    this.dataService.getData().subscribe((data) => {
-      console.warn(data);
-      this.data = data;
-    });
-  }
+  constructor(private dataService: DataService) {}
 }
