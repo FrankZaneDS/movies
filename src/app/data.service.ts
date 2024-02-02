@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-
+import { BehaviorSubject } from 'rxjs-compat';
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private data = new Subject<void>();
-  data$ = this.data.asObservable();
+  data$: BehaviorSubject<Movie[]> = new BehaviorSubject<Movie[]>([]);
+  movies$: BehaviorSubject<Movie[]> = new BehaviorSubject<Movie[]>([]);
 
   setData(data) {
-    this.data.next(data);
+    this.data$.next(data);
+  }
+
+  getFavorites(movie: Movie) {
+    this.movies$.next([...this.movies$.getValue(), movie]);
+    console.log(this.movies$);
   }
 
   constructor(private http: HttpClient) {}
@@ -22,4 +27,7 @@ export class DataService {
 
 export interface Movie {
   title: string;
+  id: number;
+  userId: number;
+  completed: boolean;
 }

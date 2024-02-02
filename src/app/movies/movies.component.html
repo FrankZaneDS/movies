@@ -1,5 +1,3 @@
-<div class="container">
-  <p>movies works!</p>
-  <div class="movie"></div>
-  <app-movie *ngFor="let item of data"></app-movie>
+<div class="container d-flex flex-wrap justify-content-between">
+  <app-movie *ngFor="let item of data; let i = index" [i]="i"></app-movie>
 </div>

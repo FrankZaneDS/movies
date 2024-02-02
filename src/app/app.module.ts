@@ -12,6 +12,7 @@ import { MovieComponent } from './movies/movie/movie.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     FavoritesComponent,
     HomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, RouterModule],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })

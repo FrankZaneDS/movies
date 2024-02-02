@@ -1,5 +1,18 @@
-<div class="container">
-  <h1></h1>
+<div class="card d-flex" style="margin-top: 10px; width: 18rem; height: 23rem">
+  <img
+    class="card-img-top"
+    style="height: 50%"
+    src="..."
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <h5 class="card-title">Movie number {{ data[i].id }}</h5>
+    <p class="card-text" style="height: 40%">
+      {{ data[i].title }}
+    </p>
+    <button (click)="getMovie(data[i])" class="btn btn-primary">
+      Add to favorites
+    </button>
+    <button class="btn btn-danger" [disabled]="deleteButton()">Delete</button>
+  </div>
 </div>
-
-<button (click)="onClick()">click</button>

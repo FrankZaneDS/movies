@@ -10,11 +10,15 @@ import { OnInit } from '@angular/core';
 })
 export class MoviesComponent implements OnInit {
   data: any;
-  index = 0;
+
   sendData() {
     this.dataService.setData(this.data);
   }
   ngOnInit() {
+    this.dataService.getData().subscribe((data) => {
+      console.warn(data);
+      this.data = data;
+    });
     this.sendData();
   }
 
