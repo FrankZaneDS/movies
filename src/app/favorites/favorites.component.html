@@ -1,0 +1,12 @@
+<div *ngIf="favorites$ | async as favorites" class="container d-flex flex-wrap">
+  <ng-container *ngFor="let movie of favorites; let i = index">
+    <app-movie
+      [data]="movie"
+      [i]="i"
+      [isDisabled]="false"
+      [isFavorite]="true"
+      style="margin: 5px"
+    ></app-movie>
+  </ng-container>
+  <!-- <button (click)="onClick()">Klik</button> -->
+</div>

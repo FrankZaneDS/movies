@@ -1,0 +1,13 @@
+<div
+  *ngIf="movies$ | async as movies"
+  class="container d-flex flex-wrap justify-content-between"
+>
+  <ng-container
+    *ngFor="
+      let movie of movies | filter : filterString : 'title';
+      let i = index
+    "
+  >
+    <app-movie [data]="movie" [i]="i" [isDisabled]="true"></app-movie>
+  </ng-container>
+</div>

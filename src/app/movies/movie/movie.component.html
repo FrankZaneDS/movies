@@ -1,0 +1,26 @@
+<div class="card d-flex" style="margin-top: 10px; width: 18rem; height: 23rem">
+  <img
+    class="card-img-top"
+    style="height: 50%"
+    src="..."
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <h5 (click)="onClick()" class="card-title">Movie number {{ data.id }}</h5>
+    <p class="card-text" style="height: 40%">
+      {{ data.title }}
+    </p>
+    <div class="container d-flex justify-content-between">
+      <button
+        (click)="getMovie(data)"
+        class="btn btn-primary"
+        *ngIf="!isFavorite"
+      >
+        Add to favorites
+      </button>
+      <button (click)="onClick()" class="btn btn-danger" *ngIf="!isDisabled">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
